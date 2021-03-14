@@ -14,14 +14,14 @@ app.listen(port, () => {
 app.get('/', async (req, res) => {
   let quotes = [];
   
-  stocks.forEach(async (element) => {
-
+  for(let i = 0; i < stocks.length; i++) {
+    let element = stocks[i];
     let response = await
     axios.get(`https://finnhub.io/api/v1/quote?symbol=${element}&token=${API_key}`)
     let data = response.data;
     quotes.push(data);
     console.log(quotes);
-  });
+  }
   res.json(quotes);
   console.log(quotes);
 })
